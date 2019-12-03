@@ -16,8 +16,10 @@ public:
     static ActivationFactory* getInstance();
     Activation* getActivation(LayerDefinition::activationType);
 private:
-    static ActivationFactory activationFactory;
+    static ActivationFactory* activationFactory;
     ActivationFactory() = default;
+    ActivationFactory(ActivationFactory const&);
+    ActivationFactory& operator=(ActivationFactory const&);
     std::unordered_map<LayerDefinition::activationType, Activation*> activationCache;
     Activation* generateActivation(LayerDefinition::activationType);
 };

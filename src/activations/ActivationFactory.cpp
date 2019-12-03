@@ -4,8 +4,12 @@
 
 #include "ActivationFactory.h"
 
+ActivationFactory* ActivationFactory::activationFactory = nullptr;
+
 ActivationFactory* ActivationFactory::getInstance() {
-    return &ActivationFactory::activationFactory;
+    if (!activationFactory)
+        activationFactory = new ActivationFactory();
+    return activationFactory;
 }
 
 Activation* ActivationFactory::getActivation(LayerDefinition::activationType activation) {
