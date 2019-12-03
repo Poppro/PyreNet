@@ -2,9 +2,8 @@
 // Created by hunter harloff on 2019-12-01.
 //
 
-#include <random>
-#include <chrono>
 #include "Perceptron.h"
+#include "random/RandomGenerator.h"
 #include "exceptions/InvalidInputSize.cpp"
 
 // Constructor
@@ -28,13 +27,9 @@ void Perceptron::calculate(const std::vector<double> &input, Activation* activat
 }
 
 void Perceptron::mutate(double lower, double upper) {
-    typedef std::chrono::high_resolution_clock myclock;
-    auto t = myclock::now();
-    std::default_random_engine generator;
-    generator.seed(t.time_since_epoch().count());
-    std::uniform_real_distribution<double> dist(lower, upper);
+    RandomGenerator* randomGenerator = RandomGenerator::getInstance();
     for (double &weight : this->weights) {
-        weight += dist(generator);
+        weight += randomGenerator->generate(lower, upper);
     }
 }
 
