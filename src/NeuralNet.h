@@ -21,7 +21,7 @@ public:
     int getInputSize();
     int getOutputSize();
 private:
-    unsigned inputSize;
+    int inputSize;
     std::vector<Layer> layers;
 };
 #endif

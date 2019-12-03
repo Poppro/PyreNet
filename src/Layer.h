@@ -14,6 +14,8 @@ public:
     // Size of layer, size of previous layer (input to layer), activation function
     Layer(int, int, Activation*);
     std::vector<double> calculate(const std::vector<double>&);
+    void mutate(double, double);
+    int size();
 private:
     std::vector<Perceptron> nodes;
     Activation* activation;

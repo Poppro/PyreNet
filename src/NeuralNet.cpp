@@ -19,4 +19,27 @@ NeuralNet::NeuralNet(int inputSize, const std::vector<LayerDefinition> &layers) 
 
 std::vector<double> NeuralNet::predict(const std::vector<double> &input) {
     if (input.size() != this->inputSize) throw InvalidInputSize();
+    std::vector<double> layerData(input);
+    for (Layer &l : this->layers) {
+        layerData = l.calculate(layerData);
+    }
+    return layerData;
+}
+
+// Mutators
+
+void NeuralNet::mutate(double lower, double upper) {
+    for (Layer &l : this->layers) {
+        l.mutate(lower, upper);
+    }
+}
+
+// Getters
+
+int NeuralNet::getInputSize() {
+    return this->inputSize;
+}
+
+int NeuralNet::getOutputSize() {
+    return this->layers.back().size();
 }

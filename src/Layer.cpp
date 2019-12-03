@@ -38,3 +38,17 @@ std::vector<double> Layer::calculate(const std::vector<double> &input) {
     }
     return ans;
 }
+
+// Mutators
+
+void Layer::mutate(double lower, double upper) {
+    for (Perceptron &p : this->nodes) {
+        p.mutate(lower, upper);
+    }
+}
+
+// Getters
+
+int Layer::size() {
+    return this->nodes.size();
+}
