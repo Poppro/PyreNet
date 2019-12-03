@@ -5,5 +5,5 @@
 #include "Linear.h"
 
 const double Linear::activate(double input) {
-    return (input >= 0) ? 1 : 0;
+    return input;
 }
