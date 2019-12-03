@@ -5,12 +5,12 @@
 #ifndef PYRENET_RELU_H
 #define PYRENET_RELU_H
 
+#include "Activation.h"
 
-
-class relu {
-
+class Relu : public Activation {
+public:
+    const double activate(double) override;
 };
-
 
 
 #endif //PYRENET_RELU_H

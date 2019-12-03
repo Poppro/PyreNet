@@ -3,6 +3,11 @@
 //
 
 #include "ActivationFactory.h"
+#include "Sigmoid.h"
+#include "Relu.h"
+#include "Linear.h"
+#include "Step.h"
+#include "Tanh.h"
 
 ActivationFactory* ActivationFactory::activationFactory = nullptr;
 
@@ -21,8 +26,20 @@ Activation* ActivationFactory::getActivation(LayerDefinition::activationType act
 
 Activation* ActivationFactory::generateActivation(LayerDefinition::activationType activation) { // generate dynamic class
     switch (activation) {
-        case LayerDefinition::activationType::sigmoid : {
+        case LayerDefinition::step: {
+            return new Step();
+        }
+        case LayerDefinition::linear: {
+            return new Linear();
+        }
+        case LayerDefinition::tanh: {
+            return new Tanh();
+        }
+        case LayerDefinition::activationType::sigmoid: {
             return new Sigmoid();
+        }
+        case LayerDefinition::relu: {
+            return new Relu();
         }
         default: {
             throw std::exception();

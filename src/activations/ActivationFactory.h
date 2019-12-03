@@ -8,7 +8,6 @@
 
 #include "../LayerDefinition.h"
 #include "Activation.h"
-#include "Sigmoid.h"
 #include <unordered_map>
 
 class ActivationFactory {

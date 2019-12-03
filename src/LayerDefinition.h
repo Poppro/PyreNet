@@ -9,7 +9,11 @@
 class LayerDefinition {
 public:
     enum activationType {
-        sigmoid
+        step,
+        linear,
+        sigmoid,
+        tanh,
+        relu
     };
     // Constructor to be supplied layer size, desired activation function
     LayerDefinition(int, activationType);

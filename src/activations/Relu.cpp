@@ -2,4 +2,9 @@
 // Created by Poppro on 12/3/2019.
 //
 
-#include "relu.h"
+#include <algorithm>
+#include "Relu.h"
+
+const double Relu::activate(double input) {
+    return std::max(0.0, input);
+}

@@ -5,12 +5,11 @@
 #ifndef PYRENET_TANH_H
 #define PYRENET_TANH_H
 
+#include "Activation.h"
 
-
-class Tanh {
-
+class Tanh : public Activation {
+    const double activate(double) override;
 };
-
 
 
 #endif //PYRENET_TANH_H

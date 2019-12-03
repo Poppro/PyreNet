@@ -5,12 +5,11 @@
 #ifndef PYRENET_STEP_H
 #define PYRENET_STEP_H
 
+#include "Activation.h"
 
-
-class Step {
-
+class Step : public Activation {
+    const double activate(double) override;
 };
-
 
 
 #endif //PYRENET_STEP_H
