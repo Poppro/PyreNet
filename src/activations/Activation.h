@@ -8,8 +8,8 @@
 
 class Activation {
 public:
-    // run activation function on weighted sum
-    virtual double activate(double) = 0;
+     // run activation function on weighted sum
+     virtual const double activate(double) = 0;
 };
 
 

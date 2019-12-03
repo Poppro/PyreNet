@@ -6,17 +6,16 @@
 #define CPPNN_PERCEPTRON_H
 
 #include <vector>
-#include "Activation.h"
+#include "activations/Activation.h"
 
 class Perceptron {
 public:
-    Perceptron(int, Activation*);
-    void calculate(const std::vector<double>&);
+    Perceptron(int);
+    void calculate(const std::vector<double>&, Activation*);
     double getValue();
-    void mutate(double);
+    void mutate(double, double);
 private:
     std::vector<double> weights;
-    Activation* activationFunction;
     double cachedValue;
     int inputSize;
 };

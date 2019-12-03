@@ -3,17 +3,18 @@
 //
 
 #include <random>
+#include <chrono>
 #include "Perceptron.h"
-#include "../exceptions/InvalidInputSize.cpp"
+#include "exceptions/InvalidInputSize.cpp"
 
 // Constructor
 
-Perceptron::Perceptron(int inputSize, Activation* af)
-    : activationFunction(af), inputSize(inputSize) {};
+Perceptron::Perceptron(int inputSize)
+    : inputSize(inputSize) {};
 
 // Mutators
 
-void Perceptron::calculate(const std::vector<double> &input) {
+void Perceptron::calculate(const std::vector<double> &input, Activation* activation) {
     if (input.size() != this->inputSize) {
         throw InvalidInputSize();
     }
@@ -21,12 +22,15 @@ void Perceptron::calculate(const std::vector<double> &input) {
     for (int i = 0; i < this->inputSize; i++) {
         weightedSum += input[i] * this->weights[i];
     }
-    this->cachedValue = this->activationFunction->activate(weightedSum);
+    this->cachedValue = activation->activate(weightedSum);
 }
 
-void Perceptron::mutate(double interval) {
+void Perceptron::mutate(double lower, double upper) {
+    typedef std::chrono::high_resolution_clock myclock;
+    auto t = myclock::now();
     std::default_random_engine generator;
-    std::uniform_real_distribution<double> dist(-interval, interval);
+    generator.seed(t.time_since_epoch().count());
+    std::uniform_real_distribution<double> dist(lower, upper);
     for (double &weight : this->weights) {
         weight += dist(generator);
     }

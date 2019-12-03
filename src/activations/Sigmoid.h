@@ -5,11 +5,11 @@
 #ifndef CPPNN_SIGMOID_H
 #define CPPNN_SIGMOID_H
 
-#include "../Activation.h"
+#include "Activation.h"
 
-class Sigmoid : Activation {
+class Sigmoid : public Activation {
 public:
-    double activate(double) override;
+    const double activate(double) override;
 };
 
 
