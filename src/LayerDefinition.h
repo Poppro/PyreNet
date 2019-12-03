@@ -11,6 +11,7 @@ public:
     enum activationType {
         sigmoid
     };
+    // Constructor to be supplied layer size, desired activation function
     LayerDefinition(int, activationType);
 private:
     activationType activation;

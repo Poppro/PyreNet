@@ -9,8 +9,10 @@
 
 // Constructor
 
-Perceptron::Perceptron(int inputSize)
-    : inputSize(inputSize) {};
+Perceptron::Perceptron(int inputSize) {
+    this->inputSize = inputSize;
+    this->weights.resize(inputSize);
+};
 
 // Mutators
 

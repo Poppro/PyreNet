@@ -2,6 +2,7 @@
 #define CPPNN_LIBRARY_H
 
 #include <vector>
+
 #include "Perceptron.h"
 #include "LayerDefinition.h"
 #include "Layer.h"

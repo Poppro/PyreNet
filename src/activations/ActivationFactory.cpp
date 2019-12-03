@@ -20,5 +20,8 @@ Activation* ActivationFactory::generateActivation(LayerDefinition::activationTyp
         case LayerDefinition::activationType::sigmoid : {
             return new Sigmoid();
         }
+        default: {
+            throw std::exception();
+        }
     }
 }
