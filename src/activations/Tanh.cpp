@@ -5,6 +5,8 @@
 #include <cmath>
 #include "Tanh.h"
 
-const double Tanh::activate(double input) {
-    return (2/(1 + exp(-2*input)) - 1);
+namespace PyreNet {
+    const double Tanh::activate(double input) {
+        return (2 / (1 + exp(-2 * input)) - 1);
+    }
 }

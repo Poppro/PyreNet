@@ -4,6 +4,8 @@
 
 #include "Step.h"
 
-const double Step::activate(double input) {
-    return (input >= 0) ? 1 : 0;
+namespace PyreNet {
+    const double Step::activate(double input) {
+        return (input >= 0) ? 1 : 0;
+    }
 }

@@ -9,40 +9,43 @@
 #include "Step.h"
 #include "Tanh.h"
 
-ActivationFactory* ActivationFactory::activationFactory = nullptr;
+namespace PyreNet {
+    ActivationFactory *ActivationFactory::activationFactory = nullptr;
 
-ActivationFactory* ActivationFactory::getInstance() {
-    if (!activationFactory)
-        activationFactory = new ActivationFactory();
-    return activationFactory;
-}
-
-Activation* ActivationFactory::getActivation(LayerDefinition::activationType activation) {
-    if (this->activationCache.find(activation) == this->activationCache.end()) { // activation function not in cache
-        this->activationCache[activation] = generateActivation(activation);
+    ActivationFactory *ActivationFactory::getInstance() {
+        if (!activationFactory)
+            activationFactory = new ActivationFactory();
+        return activationFactory;
     }
-    return this->activationCache[activation];
-}
 
-Activation* ActivationFactory::generateActivation(LayerDefinition::activationType activation) { // generate dynamic class
-    switch (activation) {
-        case LayerDefinition::step: {
-            return new Step();
+    Activation *ActivationFactory::getActivation(LayerDefinition::activationType activation) {
+        if (this->activationCache.find(activation) == this->activationCache.end()) { // activation function not in cache
+            this->activationCache[activation] = generateActivation(activation);
         }
-        case LayerDefinition::linear: {
-            return new Linear();
-        }
-        case LayerDefinition::tanh: {
-            return new Tanh();
-        }
-        case LayerDefinition::activationType::sigmoid: {
-            return new Sigmoid();
-        }
-        case LayerDefinition::relu: {
-            return new Relu();
-        }
-        default: {
-            throw std::exception();
+        return this->activationCache[activation];
+    }
+
+    Activation *
+    ActivationFactory::generateActivation(LayerDefinition::activationType activation) { // generate dynamic class
+        switch (activation) {
+            case LayerDefinition::step: {
+                return new Step();
+            }
+            case LayerDefinition::linear: {
+                return new Linear();
+            }
+            case LayerDefinition::tanh: {
+                return new Tanh();
+            }
+            case LayerDefinition::activationType::sigmoid: {
+                return new Sigmoid();
+            }
+            case LayerDefinition::relu: {
+                return new Relu();
+            }
+            default: {
+                throw std::exception();
+            }
         }
     }
 }

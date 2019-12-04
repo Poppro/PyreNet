@@ -7,10 +7,12 @@
 
 #include "Activation.h"
 
-class Relu : public Activation {
-public:
-    const double activate(double) override;
-};
+namespace PyreNet {
+    class Relu : public Activation {
+    public:
+        const double activate(double) override;
+    };
+}
 
 
 #endif //PYRENET_RELU_H

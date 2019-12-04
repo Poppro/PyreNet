@@ -7,8 +7,10 @@
 
 #include "Activation.h"
 
-class Linear : public Activation {
-    const double activate(double) override;
+namespace PyreNet {
+    class Linear : public Activation {
+        const double activate(double) override;
+    };
 };
 
 

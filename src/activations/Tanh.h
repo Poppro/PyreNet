@@ -7,9 +7,11 @@
 
 #include "Activation.h"
 
-class Tanh : public Activation {
-    const double activate(double) override;
-};
+namespace PyreNet {
+    class Tanh : public Activation {
+        const double activate(double) override;
+    };
+}
 
 
 #endif //PYRENET_TANH_H

@@ -7,9 +7,11 @@
 
 #include "Activation.h"
 
-class Step : public Activation {
-    const double activate(double) override;
-};
+namespace PyreNet {
+    class Step : public Activation {
+        const double activate(double) override;
+    };
+}
 
 
 #endif //PYRENET_STEP_H

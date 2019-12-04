@@ -10,18 +10,27 @@
 #include "Activation.h"
 #include <unordered_map>
 
-class ActivationFactory {
-public:
-    static ActivationFactory* getInstance();
-    Activation* getActivation(LayerDefinition::activationType);
-private:
-    static ActivationFactory* activationFactory;
-    ActivationFactory() = default;
-    ActivationFactory(ActivationFactory const&);
-    ActivationFactory& operator=(ActivationFactory const&);
-    std::unordered_map<LayerDefinition::activationType, Activation*> activationCache;
-    Activation* generateActivation(LayerDefinition::activationType);
-};
+namespace PyreNet {
+    class ActivationFactory {
+    public:
+        static ActivationFactory *getInstance();
+
+        Activation *getActivation(LayerDefinition::activationType);
+
+    private:
+        static ActivationFactory *activationFactory;
+
+        ActivationFactory() = default;
+
+        ActivationFactory(ActivationFactory const &);
+
+        ActivationFactory &operator=(ActivationFactory const &);
+
+        std::unordered_map<LayerDefinition::activationType, Activation *> activationCache;
+
+        Activation *generateActivation(LayerDefinition::activationType);
+    };
+}
 
 
 #endif //CPPNN_ACTIVATIONFACTORY_H

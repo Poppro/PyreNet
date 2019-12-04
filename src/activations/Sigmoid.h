@@ -7,10 +7,12 @@
 
 #include "Activation.h"
 
-class Sigmoid : public Activation {
-public:
-    const double activate(double) override;
-};
+namespace PyreNet {
+    class Sigmoid : public Activation {
+    public:
+        const double activate(double) override;
+    };
+}
 
 
 #endif //CPPNN_SIGMOID_H

@@ -4,6 +4,8 @@
 
 #include "Linear.h"
 
-const double Linear::activate(double input) {
-    return input;
-}
+namespace PyreNet {
+    const double Linear::activate(double input) {
+        return input;
+    }
+};

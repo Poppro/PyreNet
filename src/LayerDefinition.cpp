@@ -3,5 +3,6 @@
 //
 
 #include "LayerDefinition.h"
-
-LayerDefinition::LayerDefinition(int size, LayerDefinition::activationType activation) : size(size), activation(activation) {}
+namespace PyreNet {
+    LayerDefinition::LayerDefinition(int size, LayerDefinition::activationType activation) : size(size), activation(activation) {}
+}

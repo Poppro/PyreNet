@@ -6,6 +6,5 @@
 #define PYRENET_PYRENET_H
 
 #include "NeuralNet.h"
-#include "LayerDefinition.h"
 
 #endif //PYRENET_PYRENET_H

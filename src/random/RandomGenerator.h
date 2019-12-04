@@ -8,17 +8,25 @@
 #include <random>
 #include <chrono>
 
-class RandomGenerator {
-public:
-    static RandomGenerator* getInstance();
-    double generate(double, double);
-private:
-    static RandomGenerator* randomGenerator;
-    RandomGenerator();
-    RandomGenerator(RandomGenerator const&);
-    RandomGenerator& operator=(RandomGenerator const&);
-    std::default_random_engine* generator;
-};
+namespace PyreNet {
+    class RandomGenerator {
+    public:
+        static RandomGenerator *getInstance();
+
+        double generate(double, double);
+
+    private:
+        static RandomGenerator *randomGenerator;
+
+        RandomGenerator();
+
+        RandomGenerator(RandomGenerator const &);
+
+        RandomGenerator &operator=(RandomGenerator const &);
+
+        std::default_random_engine *generator;
+    };
+}
 
 
 #endif //PYRENET_RANDOMGENERATOR_H
