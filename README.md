@@ -1,1 +1,1 @@
-C++ neural network static library. Developed with simplicity as a core concept.
+C++ neural network static library. Developed as a simple, elegant, multi-purpose solution.
