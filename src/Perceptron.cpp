@@ -11,7 +11,7 @@ namespace PyreNet {
 
     Perceptron::Perceptron(int inputSize) {
         this->inputSize = inputSize;
-        this->weights.resize(inputSize);
+        this->weights.resize(inputSize + 1);
     };
 
     // Mutators
@@ -24,6 +24,7 @@ namespace PyreNet {
         for (int i = 0; i < this->inputSize; i++) {
             weightedSum += input[i] * this->weights[i];
         }
+        weightedSum += 1 * this->weights.back(); // bias term
         this->cachedValue = activation->activate(weightedSum);
     }
 
