@@ -13,11 +13,11 @@
 namespace PyreNet {
     class Perceptron {
     public:
-        Perceptron(int);
+        explicit Perceptron(int);
 
         void calculate(const std::vector<double> &, Activation *);
 
-        double getValue();
+        double getValue() const;
 
         void mutate(double, double);
 

@@ -7,27 +7,25 @@
 namespace PyreNet {
     LayerThreadPool *LayerThreadPool::instance = nullptr;
 
-    PyreNet::LayerThreadPool *PyreNet::LayerThreadPool::getInstance() {
+    PyreNet::LayerThreadPool *LayerThreadPool::getInstance() {
         if (!instance)
             instance = new LayerThreadPool;
         return instance;
     }
 
-    void PyreNet::LayerThreadPool::addJob(const PyreNet::LayerThreadPool::LayerQueueJob &job) {
+    void LayerThreadPool::addJob(const LayerThreadPool::LayerQueueJob &job) {
         std::unique_lock<std::mutex> lg(queueMutex);
         layerQueue.push(job);
         newJobCv.notify_one();
     }
 
-    std::condition_variable *PyreNet::LayerThreadPool::jobCv() {
-        return &jobDoneCv;
+
+    void LayerThreadPool::waitForTasks(int &track) {
+        std::unique_lock<std::mutex> lg(trackMutex);
+        jobDoneCv.wait(lg, [&track]() { return track <= 0; });
     }
 
-    std::mutex *PyreNet::LayerThreadPool::jobMutex() {
-        return &trackMutex;
-    }
-
-    [[noreturn]] void PyreNet::LayerThreadPool::threadJob() {
+    [[noreturn]] void LayerThreadPool::threadJob() {
         LayerThreadPool* tpi = getInstance();
         std::unique_lock<std::mutex> lg(tpi->queueMutex);
         while (true) {
