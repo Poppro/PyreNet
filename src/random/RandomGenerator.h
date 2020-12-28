@@ -7,6 +7,7 @@
 
 #include <random>
 #include <chrono>
+#include <mutex>
 
 namespace PyreNet {
     class RandomGenerator {
@@ -17,6 +18,8 @@ namespace PyreNet {
 
     private:
         static RandomGenerator *randomGenerator;
+
+        static std::mutex mutex;
 
         RandomGenerator();
 

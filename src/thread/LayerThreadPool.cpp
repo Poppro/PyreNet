@@ -33,13 +33,10 @@ namespace PyreNet {
                 tpi->layerQueue.pop();
                 lg.unlock();
                 job.p.calculate(job.input, job.activation);
-                std::unique_lock<std::mutex> lgTrack(tpi->trackMutex);
+                std::lock_guard<std::mutex> lgt(tpi->trackMutex);
                 job.track--;
                 if (job.track == 0) {
-                    lgTrack.unlock();
                     tpi->jobDoneCv.notify_all();
-                } else {
-                    lgTrack.unlock();
                 }
                 lg.lock();
             } else {

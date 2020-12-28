@@ -5,8 +5,10 @@
 #include "RandomGenerator.h"
 namespace PyreNet {
     RandomGenerator *RandomGenerator::randomGenerator = nullptr;
+    std::mutex RandomGenerator::mutex;
 
     RandomGenerator *RandomGenerator::getInstance() {
+        std::unique_lock<std::mutex> lg(mutex);
         if (randomGenerator == nullptr)
             randomGenerator = new RandomGenerator();
         return randomGenerator;
@@ -21,6 +23,7 @@ namespace PyreNet {
     }
 
     double RandomGenerator::generate(double lower, double upper) {
+        std::unique_lock<std::mutex> lg(mutex);
         std::uniform_real_distribution<double> dist(lower, upper);
         return dist(*generator);
     }

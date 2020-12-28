@@ -17,6 +17,30 @@ void stressTest() {
     std::cout << "Stress test complete" << std::endl;
 }
 
+void multiThreadedStressTest() {
+    int threadCount = 10;
+    std::vector<PyreNet::LayerDefinition> layerDefs;
+    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(2, PyreNet::LayerDefinition::activationType::relu);
+    std::vector<PyreNet::NeuralNet> nns;
+    for (int i = 0; i < threadCount; ++i) {
+        nns.emplace_back(5, layerDefs);
+        nns.back().mutate(0, 1);
+    }
+    std::vector<double> input{0,1,2,3,4};
+
+    std::vector<std::thread> pool;
+    for (int i = 0; i < threadCount; ++i)
+        pool.emplace_back(&PyreNet::NeuralNet::predict, nns[i], input);
+
+    for (std::thread& t : pool)
+        t.join();
+
+    std::cout << "Multi threaded stress test complete" << std::endl;
+}
+
 void serializeTest() {
     std::vector<PyreNet::LayerDefinition> layerDefs;
     layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
@@ -44,6 +68,7 @@ void serializeTest() {
 
 int main() {
     stressTest();
+    multiThreadedStressTest();
     serializeTest();
     return 0;
 }
