@@ -19,7 +19,6 @@ namespace PyreNet {
         newJobCv.notify_one();
     }
 
-
     void LayerThreadPool::waitForTasks(int &track) {
         std::unique_lock<std::mutex> lg(trackMutex);
         jobDoneCv.wait(lg, [&track]() { return track <= 0; });
