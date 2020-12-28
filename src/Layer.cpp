@@ -3,7 +3,10 @@
 //
 
 #include "Layer.h"
-#include <thread>
+
+#include <condition_variable>
+
+#include "thread/LayerThreadPool.h"
 
 namespace PyreNet {
 // Constructor
@@ -18,23 +21,17 @@ namespace PyreNet {
 
 // Main Layer Logic
 
-    void threadJob(const std::vector<double> &input, Perceptron *p, Activation *activation) {
-        p->calculate(input, activation);
-    }
-
     std::vector<double> Layer::calculate(const std::vector<double> &input) {
-        std::vector<std::thread> threadPool;
-        threadPool.reserve(nodes.size());
+        LayerThreadPool* layerThreadPool = LayerThreadPool::getInstance();
+        int track = this->nodes.size();
         for (Perceptron &p : this->nodes) {
-            // run perceptron calculation on thread
-            threadPool.emplace_back(threadJob, input, &p, this->activation);
+            LayerThreadPool::LayerQueueJob job(input, p, this->activation, track);
+            layerThreadPool->addJob(job);
         }
-        for (std::thread &t : threadPool) {
-            t.join();
-        }
+        layerThreadPool->waitForTasks(track);
         std::vector<double> ans;
         ans.reserve(this->nodes.size());
-        for (Perceptron &p : this->nodes) {
+        for (const Perceptron &p : this->nodes) {
             ans.push_back(p.getValue());
         }
         return ans;

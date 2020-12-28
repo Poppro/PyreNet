@@ -6,6 +6,7 @@
 #define CPPNN_LAYER_H
 
 #include <vector>
+#include <thread>
 
 #include "Perceptron.h"
 #include "activations/Activation.h"

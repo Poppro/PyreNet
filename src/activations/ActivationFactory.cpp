@@ -37,7 +37,7 @@ namespace PyreNet {
             case LayerDefinition::tanh: {
                 return new Tanh();
             }
-            case LayerDefinition::activationType::sigmoid: {
+            case LayerDefinition::sigmoid: {
                 return new Sigmoid();
             }
             case LayerDefinition::relu: {
