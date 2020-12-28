@@ -37,7 +37,7 @@ namespace PyreNet {
 
     // Getters
 
-    double Perceptron::getValue() {
+    double Perceptron::getValue() const {
         return this->cachedValue;
     }
 }

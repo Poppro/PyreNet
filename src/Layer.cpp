@@ -28,13 +28,10 @@ namespace PyreNet {
             LayerThreadPool::LayerQueueJob job(input, p, this->activation, track);
             layerThreadPool->addJob(job);
         }
-        std::unique_lock<std::mutex> lg(*layerThreadPool->jobMutex());
-        layerThreadPool->jobCv()->wait(lg, [&track]() { return track <= 0; });
-        lg.unlock();
-        lg.release();
+        layerThreadPool->waitForTasks(track);
         std::vector<double> ans;
         ans.reserve(this->nodes.size());
-        for (Perceptron &p : this->nodes) {
+        for (const Perceptron &p : this->nodes) {
             ans.push_back(p.getValue());
         }
         return ans;

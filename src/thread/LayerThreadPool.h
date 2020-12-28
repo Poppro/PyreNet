@@ -29,9 +29,7 @@ namespace PyreNet {
 
         void addJob(const LayerQueueJob &job);
 
-        std::condition_variable* jobCv();
-
-        std::mutex* jobMutex();
+        void waitForTasks(int &track);
 
     private:
         LayerThreadPool();
