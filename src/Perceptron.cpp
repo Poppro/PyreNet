@@ -3,6 +3,7 @@
 //
 
 #include "Perceptron.h"
+
 #include "random/RandomGenerator.h"
 #include "exceptions/InvalidInputSize.h"
 
@@ -39,5 +40,20 @@ namespace PyreNet {
 
     double Perceptron::getValue() const {
         return this->cachedValue;
+    }
+
+    // Serialize
+
+    std::ostream &operator<<(std::ostream &os, const Perceptron &p) {
+        for (double w : p.weights)
+            os << w << " ";
+        return os;
+    }
+
+    std::istream& operator>>(std::istream& is, Perceptron &p) {
+        for (double& w : p.weights) {
+            is >> w;
+        }
+        return is;
     }
 }

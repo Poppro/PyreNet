@@ -44,4 +44,18 @@ namespace PyreNet {
     int NeuralNet::getOutputSize() {
         return this->layers.back().size();
     }
+
+    // Serialize
+
+    std::ostream &operator<<(std::ostream &os, const NeuralNet& nn) {
+        for (const Layer& l : nn.layers)
+            os << l << " ";
+        return os;
+    }
+
+    std::istream& operator>>(std::istream& is, NeuralNet& nn) {
+        for (Layer& l : nn.layers)
+            is >> l;
+        return is;
+    }
 }

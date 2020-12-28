@@ -50,4 +50,19 @@ namespace PyreNet {
     int Layer::size() {
         return this->nodes.size();
     }
+
+// Serialize
+
+    std::ostream &operator<<(std::ostream &os, const Layer &l) {
+        for (const Perceptron& p : l.nodes)
+            os << p << " ";
+        return os;
+    }
+
+    std::istream& operator>>(std::istream& is, Layer &l) {
+        for (Perceptron& p : l.nodes) {
+            is >> p;
+        }
+        return is;
+    }
 }

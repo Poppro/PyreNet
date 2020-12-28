@@ -23,9 +23,13 @@ namespace PyreNet {
 
         int size();
 
+        friend std::ostream& operator<<(std::ostream& os, const Layer &l);
+
+        friend std::istream& operator>>(std::istream& is, Layer &l);
+
     private:
         std::vector<Perceptron> nodes;
-        Activation *activation;
+        Activation* activation;
     };
 }
 

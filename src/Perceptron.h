@@ -6,6 +6,8 @@
 #define CPPNN_PERCEPTRON_H
 
 #include <vector>
+#include <sstream>
+
 #include "activations/Activation.h"
 
 namespace PyreNet {
@@ -18,6 +20,10 @@ namespace PyreNet {
         double getValue() const;
 
         void mutate(double, double);
+
+        friend std::ostream& operator<<(std::ostream& os, const Perceptron &p);
+
+        friend std::istream& operator>>(std::istream& is, Perceptron &p);
 
     private:
         std::vector<double> weights;
