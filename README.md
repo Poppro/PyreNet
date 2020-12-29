@@ -8,11 +8,13 @@ To be a bit more elaborate, this library offers a simple interface for home-cook
 ## Quick Start
 
 ### Installation
-The library should be built as a static c++ library. No additional dependencies are required.
+
+For a pre-built library file, check out our [latest release](https://github.com/Poppro/PyreNet/releases/latest). 
+No additional dependencies are required.
 
 ### Example Usage
 
-```
+```c++
 #include "PyreNet.h"
 
 int main() {
