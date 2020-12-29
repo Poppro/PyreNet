@@ -1,13 +1,16 @@
-# C++ neural network static library. Developed as a simple, elegant, multi-purpose solution.
-This library offers a simple interface for home-cooked reinforcement based deep learning projects. It is optimized for running in a multi-threaded environment, seeking to offer performance and simple, essential, features without the complexity endured from larger-scale libraries. This library does not currently support back propagation.
+# PyreNet
+## About
+In short, this is a C++ neural network static library developed as a simple, elegant, multi-purpose solution.
+
+To be a bit more elaborate, this library offers a simple interface for home-cooked reinforcement based deep learning projects. It is optimized for running in a multi-threaded environment, seeking to offer performance and simple, essential, features without the complexity endured from larger-scale libraries. This library does not currently support back propagation.
 
 
-# Quick Start
+## Quick Start
 
-## Installation
+### Installation
 The library should be built as a static c++ library. No additional dependencies are required.
 
-## Example Usage
+### Example Usage
 
 ```
 #include "PyreNet.h"
