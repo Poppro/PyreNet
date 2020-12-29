@@ -52,15 +52,20 @@ namespace PyreNet {
     // Serialize
 
     std::ostream &operator<<(std::ostream &os, const Perceptron &p) {
+        os << p.inputSize << " ";
+        os << p.weights.size() << " ";
         for (double w : p.weights)
             os << w << " ";
         return os;
     }
 
     std::istream& operator>>(std::istream& is, Perceptron &p) {
-        for (double& w : p.weights) {
+        is >> p.inputSize;
+        int weightSize;
+        is >> weightSize;
+        p.weights.resize(weightSize);
+        for (double& w : p.weights)
             is >> w;
-        }
         return is;
     }
 }

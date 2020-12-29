@@ -16,6 +16,9 @@ namespace PyreNet {
         // # of input size, and layer topology (vector of layer sizes, includes output & middle)
         NeuralNet(int, const std::vector<LayerDefinition>&);
 
+        // Load network from an istream
+        NeuralNet(std::istream& is);
+
         // Predict output
         std::vector<double> predict(const std::vector<double>&);
 

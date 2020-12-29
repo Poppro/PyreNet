@@ -6,6 +6,7 @@
 
 #include <condition_variable>
 
+#include "activations/ActivationFactory.h"
 #include "thread/LayerThreadPool.h"
 
 namespace PyreNet {
@@ -59,16 +60,24 @@ namespace PyreNet {
 
 // Serialize
 
-    std::ostream &operator<<(std::ostream &os, const Layer &l) {
+    std::ostream &operator<<(std::ostream& os, const Layer &l) {
+        os << ActivationFactory::toString(l.activation->type()) << " ";
+        os << l.nodes.size() << " ";
         for (const Perceptron& p : l.nodes)
             os << p << " ";
         return os;
     }
 
     std::istream& operator>>(std::istream& is, Layer &l) {
-        for (Perceptron& p : l.nodes) {
+        ActivationFactory* activationFactory = ActivationFactory::getInstance();
+        std::string activationString;
+        is >> activationString;
+        l.activation = activationFactory->getActivation(ActivationFactory::fromString(activationString));
+        int nodesSize;
+        is >> nodesSize;
+        l.nodes.resize(nodesSize, Perceptron(0));
+        for (Perceptron& p : l.nodes)
             is >> p;
-        }
         return is;
     }
 }

@@ -51,4 +51,43 @@ namespace PyreNet {
             }
         }
     }
+
+    std::string ActivationFactory::toString(LayerDefinition::activationType activation) {
+        switch (activation) {
+            case LayerDefinition::step: {
+                return "step";
+            }
+            case LayerDefinition::linear: {
+                return "linear";
+            }
+            case LayerDefinition::tanh: {
+                return "tanh";
+            }
+            case LayerDefinition::sigmoid: {
+                return "sigmoid";
+            }
+            case LayerDefinition::relu: {
+                return "relu";
+            }
+            default: {
+                throw std::exception();
+            }
+        }
+    }
+
+    LayerDefinition::activationType ActivationFactory::fromString(const std::string& activation) {
+        if (activation == "step") {
+            return LayerDefinition::step;
+        } else if (activation == "linear") {
+            return LayerDefinition::linear;
+        } else if (activation == "tanh") {
+            return LayerDefinition::tanh;
+        } else if (activation == "sigmoid") {
+            return LayerDefinition::sigmoid;
+        } else if (activation == "relu") {
+            return LayerDefinition::relu;
+        } else {
+            throw std::exception();
+        }
+    }
 }
