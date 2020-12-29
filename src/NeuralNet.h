@@ -19,7 +19,10 @@ namespace PyreNet {
         std::vector<double> predict(const std::vector<double>&);
 
         // Mutate weightings in the neural net by an interval amount
-        void mutate(double, double);
+        void mutate_uniform(double lowerBound, double upperBound);
+
+        // Mutate weightings based on normal distribution
+        void mutate_gaussian(double mean, double std);
 
         //size of public layers
         int getInputSize();

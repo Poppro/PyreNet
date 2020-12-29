@@ -29,10 +29,17 @@ namespace PyreNet {
         this->cachedValue = activation->activate(weightedSum);
     }
 
-    void Perceptron::mutate(double lower, double upper) {
+    void Perceptron::mutate_uniform(double lower, double upper) {
         RandomGenerator *randomGenerator = RandomGenerator::getInstance();
         for (double &weight : this->weights) {
-            weight += randomGenerator->generate(lower, upper);
+            weight += randomGenerator->generate_uniform(lower, upper);
+        }
+    }
+
+    void Perceptron::mutate_gaussian(double mean, double std) {
+        RandomGenerator *randomGenerator = RandomGenerator::getInstance();
+        for (double &weight : this->weights) {
+            weight += randomGenerator->generate_gaussian(mean, std);
         }
     }
 

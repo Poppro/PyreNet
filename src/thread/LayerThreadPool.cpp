@@ -6,8 +6,10 @@
 
 namespace PyreNet {
     LayerThreadPool *LayerThreadPool::instance = nullptr;
+    std::mutex LayerThreadPool::instanceMutex;
 
     PyreNet::LayerThreadPool *LayerThreadPool::getInstance() {
+        std::unique_lock<std::mutex> lg(instanceMutex);
         if (!instance)
             instance = new LayerThreadPool;
         return instance;

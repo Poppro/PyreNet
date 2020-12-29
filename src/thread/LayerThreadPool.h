@@ -33,7 +33,14 @@ namespace PyreNet {
 
     private:
         LayerThreadPool();
+
+        LayerThreadPool(LayerThreadPool const &);
+
+        LayerThreadPool &operator=(LayerThreadPool const &);
+
+    private:
         static LayerThreadPool* instance;
+        static std::mutex instanceMutex;
         [[noreturn]] static void threadJob();
         std::vector<std::thread> pool;
         std::condition_variable jobDoneCv;

@@ -19,7 +19,9 @@ namespace PyreNet {
 
         std::vector<double> calculate(const std::vector<double> &);
 
-        void mutate(double, double);
+        void mutate_uniform(double, double);
+
+        void mutate_gaussian(double mean, double std);
 
         int size();
 
