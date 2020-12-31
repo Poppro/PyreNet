@@ -1,3 +1,4 @@
+[![CI Status](https://github.com/Poppro/PyreNet/workflows/CMake/badge.svg?branch=master)](https://github.com/Poppro/PyreNet/actions?query=branch%3Amaster)
 # PyreNet
 ## About
 ### Intended Use
