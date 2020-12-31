@@ -7,7 +7,7 @@ In short, this is a C++ neural network static library developed as a simple, ele
 To be a bit more elaborate, this library offers a simple interface for home-cooked reinforcement based deep learning projects. It is optimized for running in a multi-threaded environment, seeking to offer performance and simple, essential, features without the complexity endured from larger-scale libraries. This library does not currently support back propagation.
 
 ### Thread Safety
-The library is designed to be fully thread-safe and can be used in multi-threaded enviroments.
+The library is designed to be fully thread-safe and can be used in multi-threaded environments.
 
 ## Quick Start
 
