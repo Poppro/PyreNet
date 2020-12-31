@@ -10,6 +10,7 @@
 namespace PyreNet {
     class Tanh : public Activation {
         const double activate(double) override;
+        const LayerDefinition::activationType type() override;
     };
 }
 

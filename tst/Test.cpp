@@ -63,6 +63,11 @@ void serializeTest() {
     if (std::abs(nn.predict(input)[0] - output) > 1)
         exit(EXIT_FAILURE);
 
+    ss << nn;
+    PyreNet::NeuralNet nn2(ss);
+    if (std::abs(nn2.predict(input)[0] - output) > 1)
+        exit(EXIT_FAILURE);
+
     std::cout << "Serialize test complete" << std::endl;
 }
 

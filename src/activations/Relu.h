@@ -11,6 +11,7 @@ namespace PyreNet {
     class Relu : public Activation {
     public:
         const double activate(double) override;
+        const LayerDefinition::activationType type() override;
     };
 }
 

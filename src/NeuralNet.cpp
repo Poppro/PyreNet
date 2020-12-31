@@ -2,6 +2,7 @@
 
 namespace PyreNet {
     // Constructor
+
     NeuralNet::NeuralNet(int inputSize, const std::vector<LayerDefinition> &layers) {
         ActivationFactory* activationFactory = ActivationFactory::getInstance();
         this->inputSize = inputSize;
@@ -14,6 +15,11 @@ namespace PyreNet {
             this->layers.emplace_back(layer.size, prevSize, activation);
             prevSize = layer.size;
         }
+    }
+
+    NeuralNet::NeuralNet(std::istream &is) {
+        this->inputSize = 0;
+        is >> *this;
     }
 
     // Predictor
@@ -29,15 +35,27 @@ namespace PyreNet {
 
     // Mutators
 
-    void NeuralNet::mutate_uniform(double lower, double upper) {
-        for (Layer &l : this->layers) {
-            l.mutate_uniform(lower, upper);
+    void NeuralNet::mutate_uniform(double lower, double upper, int layer) {
+        if (layer == -1) {
+            for (Layer &l : this->layers) {
+                l.mutate_uniform(lower, upper);
+            }
+        } else {
+            if (layer < 0 || layer >= this->layers.size())
+                throw InvalidLayer();
+            this->layers[layer].mutate_uniform(lower, upper);
         }
     }
 
-    void NeuralNet::mutate_gaussian(double mean, double std) {
-        for (Layer &l : this->layers) {
-            l.mutate_gaussian(mean, std);
+    void NeuralNet::mutate_gaussian(double mean, double std, int layer) {
+        if (layer == -1) {
+            for (Layer &l : this->layers) {
+                l.mutate_gaussian(mean, std);
+            }
+        } else {
+            if (layer < 0 || layer >= this->layers.size())
+                throw InvalidLayer();
+            this->layers[layer].mutate_gaussian(mean, std);
         }
     }
 
@@ -54,12 +72,18 @@ namespace PyreNet {
     // Serialize
 
     std::ostream &operator<<(std::ostream &os, const NeuralNet& nn) {
+        os << nn.inputSize << " ";
+        os << nn.layers.size() << " ";
         for (const Layer& l : nn.layers)
             os << l << " ";
         return os;
     }
 
     std::istream& operator>>(std::istream& is, NeuralNet& nn) {
+        is >> nn.inputSize;
+        int layerSize;
+        is >> layerSize;
+        nn.layers.resize(layerSize, Layer(0, 0, nullptr));
         for (Layer& l : nn.layers)
             is >> l;
         return is;
