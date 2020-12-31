@@ -29,7 +29,7 @@ int main() {
 
   // Initialize the network
   PyreNet::NeuralNet nn(5, layerDefs);  // Defines the network to have an input size of 5
-  nn.mutate_guassian(0, 1);  // Mutates network weights from a gaussian sample with mean 0, standard deviation 1
+  nn.mutate_gaussian(0, 1);  // Mutates network weights from a gaussian sample with mean 0, standard deviation 1
 
   // Run a prediction on an input vector
   std::vector<double> predictions = nn.predict(std::vector<double>{0, 1, 2, 3, 4});
