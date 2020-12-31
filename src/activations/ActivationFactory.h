@@ -23,7 +23,7 @@ namespace PyreNet {
         static std::string toString(LayerDefinition::activationType);
 
         static LayerDefinition::activationType fromString(const std::string&);
-
+      
     private:
         ActivationFactory() = default;
 
