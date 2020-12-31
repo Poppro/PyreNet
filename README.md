@@ -1,9 +1,12 @@
 # PyreNet
 ## About
+### Intended Use
 In short, this is a C++ neural network static library developed as a simple, elegant, multi-purpose solution.
 
 To be a bit more elaborate, this library offers a simple interface for home-cooked reinforcement based deep learning projects. It is optimized for running in a multi-threaded environment, seeking to offer performance and simple, essential, features without the complexity endured from larger-scale libraries. This library does not currently support back propagation.
 
+### Thread Safety
+The library is designed to be fully thread-safe and can be used in multi-threaded enviroments.
 
 ## Quick Start
 
@@ -26,7 +29,7 @@ int main() {
 
   // Initialize the network
   PyreNet::NeuralNet nn(5, layerDefs);  // Defines the network to have an input size of 5
-  nn.mutate(-1, 1);  // Mutates network weights to be between -1 and 1
+  nn.mutate_guassian(0, 1);  // Mutates network weights from a gaussian sample with mean 0, standard deviation 1
 
   // Run a prediction on an input vector
   std::vector<double> predictions = nn.predict(std::vector<double>{0, 1, 2, 3, 4});
@@ -56,6 +59,23 @@ ofs << nn;
 ifstream ifs("output.txt");
 ifs >> nn;
 ```
+
+### Mutations
+#### Gaussian
+```c++
+mutate_gaussian(mean, std, OptionalInt(layerIndex));
+```
+Mutates the weights via a gaussian distribution.
+
+If the layerIndex field is specified, only that layer will be mutated.
+Indexing starts from 0 at the first set of weights.
+
+#### Uniform
+```c++
+mutate_uniform(lower_bound, upper_bound, OptionalInt(layerIndex));
+```
+
+Mutates the weights uniformly by a modifier in the range [lower_bound, upper_bound].
 
 
 ## Contributing
