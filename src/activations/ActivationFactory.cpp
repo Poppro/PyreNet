@@ -11,14 +11,17 @@
 
 namespace PyreNet {
     ActivationFactory *ActivationFactory::activationFactory = nullptr;
+    std::mutex ActivationFactory::instanceMutex;
 
     ActivationFactory *ActivationFactory::getInstance() {
+        std::unique_lock<std::mutex> lg(instanceMutex);
         if (!activationFactory)
             activationFactory = new ActivationFactory();
         return activationFactory;
     }
 
     Activation *ActivationFactory::getActivation(LayerDefinition::activationType activation) {
+        std::unique_lock<std::mutex> lg(instanceMutex);
         if (this->activationCache.find(activation) == this->activationCache.end()) { // activation function not in cache
             this->activationCache[activation] = generateActivation(activation);
         }

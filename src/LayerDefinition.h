@@ -17,7 +17,7 @@ namespace PyreNet {
         };
 
         // Constructor to be supplied layer size, desired activation function
-        LayerDefinition(int, activationType);
+        LayerDefinition(int, LayerDefinition::activationType);
 
     private:
         activationType activation;

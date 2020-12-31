@@ -39,9 +39,15 @@ namespace PyreNet {
 
 // Mutators
 
-    void Layer::mutate(double lower, double upper) {
+    void Layer::mutate_uniform(double lower, double upper) {
         for (Perceptron &p : this->nodes) {
-            p.mutate(lower, upper);
+            p.mutate_uniform(lower, upper);
+        }
+    }
+
+    void Layer::mutate_gaussian(double mean, double std) {
+        for (Perceptron &p : this->nodes) {
+            p.mutate_gaussian(mean, std);
         }
     }
 

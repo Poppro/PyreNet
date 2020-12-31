@@ -12,7 +12,7 @@ void stressTest() {
     layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
     layerDefs.emplace_back(2, PyreNet::LayerDefinition::activationType::relu);
     PyreNet::NeuralNet nn(5, layerDefs);
-    nn.mutate(0, 0.1);
+    nn.mutate_uniform(0, 0.1);
     std::vector<double> input{0,1,2,3,4};
     std::cout << "Stress test complete" << std::endl;
 }
@@ -27,7 +27,7 @@ void multiThreadedStressTest() {
     std::vector<PyreNet::NeuralNet> nns;
     for (int i = 0; i < threadCount; ++i) {
         nns.emplace_back(5, layerDefs);
-        nns.back().mutate(0, 1);
+        nns.back().mutate_uniform(0, 1);
     }
     std::vector<double> input{0,1,2,3,4};
 
@@ -48,14 +48,14 @@ void serializeTest() {
     layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
     layerDefs.emplace_back(2, PyreNet::LayerDefinition::activationType::relu);
     PyreNet::NeuralNet nn(5, layerDefs);
-    nn.mutate(0,2);
+    nn.mutate_uniform(0,2);
     std::vector<double> input{0,1,2,3,4};
     double output = nn.predict(input)[0];
 
     std::stringstream ss;
     ss << nn;
 
-    nn.mutate(2,2);
+    nn.mutate_uniform(2,2);
     if (std::abs(nn.predict(input)[0] - output) <= 1)
         exit(EXIT_FAILURE);
 

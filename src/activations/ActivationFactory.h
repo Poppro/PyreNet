@@ -7,8 +7,11 @@
 
 
 #include "../LayerDefinition.h"
-#include "Activation.h"
+
 #include <unordered_map>
+#include <mutex>
+
+#include "Activation.h"
 
 namespace PyreNet {
     class ActivationFactory {
@@ -18,16 +21,16 @@ namespace PyreNet {
         Activation *getActivation(LayerDefinition::activationType);
 
     private:
-        static ActivationFactory *activationFactory;
-
         ActivationFactory() = default;
 
         ActivationFactory(ActivationFactory const &);
 
         ActivationFactory &operator=(ActivationFactory const &);
 
+    private:
+        static ActivationFactory *activationFactory;
+        static std::mutex instanceMutex;
         std::unordered_map<LayerDefinition::activationType, Activation *> activationCache;
-
         Activation *generateActivation(LayerDefinition::activationType);
     };
 }

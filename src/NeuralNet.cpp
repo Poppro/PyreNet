@@ -29,9 +29,15 @@ namespace PyreNet {
 
     // Mutators
 
-    void NeuralNet::mutate(double lower, double upper) {
+    void NeuralNet::mutate_uniform(double lower, double upper) {
         for (Layer &l : this->layers) {
-            l.mutate(lower, upper);
+            l.mutate_uniform(lower, upper);
+        }
+    }
+
+    void NeuralNet::mutate_gaussian(double mean, double std) {
+        for (Layer &l : this->layers) {
+            l.mutate_gaussian(mean, std);
         }
     }
 

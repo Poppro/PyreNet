@@ -14,19 +14,20 @@ namespace PyreNet {
     public:
         static RandomGenerator *getInstance();
 
-        double generate(double, double);
+        double generate_uniform(double lower, double upper);
+
+        double generate_gaussian(double mean, double std);
 
     private:
-        static RandomGenerator *randomGenerator;
-
-        static std::mutex mutex;
-
         RandomGenerator();
 
         RandomGenerator(RandomGenerator const &);
 
         RandomGenerator &operator=(RandomGenerator const &);
 
+    private:
+        static RandomGenerator *randomGenerator;
+        static std::mutex instanceMutex;
         std::default_random_engine *generator;
     };
 }
