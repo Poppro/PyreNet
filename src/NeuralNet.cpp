@@ -2,6 +2,7 @@
 
 namespace PyreNet {
     // Constructor
+
     NeuralNet::NeuralNet(int inputSize, const std::vector<LayerDefinition> &layers) {
         ActivationFactory* activationFactory = ActivationFactory::getInstance();
         this->inputSize = inputSize;
@@ -14,6 +15,11 @@ namespace PyreNet {
             this->layers.emplace_back(layer.size, prevSize, activation);
             prevSize = layer.size;
         }
+    }
+
+    NeuralNet::NeuralNet(std::istream &is) {
+        this->inputSize = 0;
+        is >> *this;
     }
 
     // Predictor
@@ -66,12 +72,18 @@ namespace PyreNet {
     // Serialize
 
     std::ostream &operator<<(std::ostream &os, const NeuralNet& nn) {
+        os << nn.inputSize << " ";
+        os << nn.layers.size() << " ";
         for (const Layer& l : nn.layers)
             os << l << " ";
         return os;
     }
 
     std::istream& operator>>(std::istream& is, NeuralNet& nn) {
+        is >> nn.inputSize;
+        int layerSize;
+        is >> layerSize;
+        nn.layers.resize(layerSize, Layer(0, 0, nullptr));
         for (Layer& l : nn.layers)
             is >> l;
         return is;
