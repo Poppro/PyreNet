@@ -9,6 +9,7 @@
 
 namespace PyreNet {
     class InvalidInputSize : public std::exception {
+    public:
         const char *what() const noexcept override;
     };
 }
