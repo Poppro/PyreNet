@@ -35,7 +35,7 @@ namespace PyreNet {
                 l.mutate_uniform(lower, upper);
             }
         } else {
-            if (layer < 0 || layer > this->layers.size())
+            if (layer < 0 || layer >= this->layers.size())
                 throw InvalidLayer();
             this->layers[layer].mutate_uniform(lower, upper);
         }
@@ -47,7 +47,7 @@ namespace PyreNet {
                 l.mutate_gaussian(mean, std);
             }
         } else {
-            if (layer < 0 || layer > this->layers.size())
+            if (layer < 0 || layer >= this->layers.size())
                 throw InvalidLayer();
             this->layers[layer].mutate_gaussian(mean, std);
         }
