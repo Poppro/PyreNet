@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(PyreNet)
 
 SET(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS -pthread)
 
 ADD_EXECUTABLE(PyreNetTest
         tst/Test.cpp
@@ -70,5 +71,3 @@ ADD_LIBRARY(PyreNet STATIC
         src/random/RandomGenerator.h
         src/thread/LayerThreadPool.cpp
         src/thread/LayerThreadPool.h)
-
-TARGET_COMPILE_OPTIONS(PyreNetTest PUBLIC -pthread)
