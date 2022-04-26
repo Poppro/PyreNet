@@ -6,10 +6,10 @@ set(CMAKE_CXX_FLAGS -pthread)
 enable_testing()
 
 ADD_TEST(PyreNetTest
-        ../tst/Test.cpp
-        ../src/PyreNet.h
-        ../src/NeuralNet.cpp
-        ../src/NeuralNet.h
+        tst/Test.cpp
+        src/PyreNet.h
+        src/NeuralNet.cpp
+        src/NeuralNet.h
         src/Layer.cpp
         src/Layer.h
         src/LayerDefinition.cpp
