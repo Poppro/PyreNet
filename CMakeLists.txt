@@ -3,8 +3,9 @@ project(PyreNet)
 
 SET(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -pthread)
+enable_testing()
 
-ADD_EXECUTABLE(PyreNetTest
+ADD_TEST(PyreNetTest
         tst/Test.cpp
         src/PyreNet.h
         src/NeuralNet.cpp
