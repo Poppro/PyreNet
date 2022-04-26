@@ -35,7 +35,7 @@ namespace PyreNet {
 
     // Mutators
 
-    void NeuralNet::mutate_uniform(double lower, double upper, int layer) {
+    void NeuralNet::mutate_uniform(const double lower, const double upper, int layer) {
         if (layer == -1) {
             for (Layer &l : this->layers) {
                 l.mutate_uniform(lower, upper);
@@ -47,7 +47,7 @@ namespace PyreNet {
         }
     }
 
-    void NeuralNet::mutate_gaussian(double mean, double std, int layer) {
+    void NeuralNet::mutate_gaussian(const double mean, const double std, int layer) {
         if (layer == -1) {
             for (Layer &l : this->layers) {
                 l.mutate_gaussian(mean, std);
@@ -61,11 +61,11 @@ namespace PyreNet {
 
     // Getters
 
-    int NeuralNet::getInputSize() {
+    const int NeuralNet::getInputSize() {
         return this->inputSize;
     }
 
-    int NeuralNet::getOutputSize() {
+    const int NeuralNet::getOutputSize() {
         return this->layers.back().size();
     }
 

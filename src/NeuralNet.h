@@ -24,16 +24,16 @@ namespace PyreNet {
 
         // Mutate weightings in the neural net by an interval amount.
         // Applies to all layers by default.
-        void mutate_uniform(double lowerBound, double upperBound, int layer = -1);
+        void mutate_uniform(const double lowerBound, const double upperBound, int layer = -1);
 
         // Mutate weightings based on normal distribution.
         // Applies to all layers by default.
-        void mutate_gaussian(double mean, double std, int layer = -1);
+        void mutate_gaussian(const double mean, const double std, int layer = -1);
 
         //size of public layers
-        int getInputSize();
+        const int getInputSize();
 
-        int getOutputSize();
+        const int getOutputSize();
 
         friend std::ostream& operator<<(std::ostream& os, const NeuralNet& nn);
 

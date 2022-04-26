@@ -15,15 +15,15 @@ namespace PyreNet {
     class Layer {
     public:
         // Size of layer, size of previous layer (input to layer), activation function
-        Layer(int, int, Activation *);
+        Layer(const int, const int, Activation *);
 
         std::vector<double> calculate(const std::vector<double> &);
 
-        void mutate_uniform(double, double);
+        void mutate_uniform(const double, const double);
 
-        void mutate_gaussian(double mean, double std);
+        void mutate_gaussian(const double mean, const double std);
 
-        int size();
+        const int size();
 
         friend std::ostream& operator<<(std::ostream& os, const Layer &l);
 
