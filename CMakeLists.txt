@@ -5,7 +5,7 @@ SET(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -pthread)
 enable_testing()
 
-ADD_TEST(PyreNetTest
+ADD_EXECUTABLE(PyreNetTest
         tst/Test.cpp
         src/PyreNet.h
         src/NeuralNet.cpp
@@ -72,3 +72,8 @@ ADD_LIBRARY(PyreNet STATIC
         src/random/RandomGenerator.h
         src/thread/LayerThreadPool.cpp
         src/thread/LayerThreadPool.h)
+
+
+ADD_TEST(System_Test
+        ./PyreNetTest
+        )
