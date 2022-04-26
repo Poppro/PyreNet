@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS -pthread)
 enable_testing()
 
 ADD_EXECUTABLE(PyreNetTest
-        tst/Test.cpp
+        test/Test.cpp
         src/PyreNet.h
         src/NeuralNet.cpp
         src/NeuralNet.h
