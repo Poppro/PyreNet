@@ -34,6 +34,8 @@ ADD_EXECUTABLE(PyreNetTest
         src/exceptions/InvalidInputSize.h
         src/exceptions/InvalidLayer.cpp
         src/exceptions/InvalidLayer.h
+        src/exceptions/InvalidNetworkSize.cpp
+        src/exceptions/InvalidNetworkSize.h
         src/random/RandomGenerator.cpp
         src/random/RandomGenerator.h
         src/thread/LayerThreadPool.cpp
@@ -68,6 +70,8 @@ ADD_LIBRARY(PyreNet STATIC
         src/exceptions/InvalidInputSize.h
         src/exceptions/InvalidLayer.cpp
         src/exceptions/InvalidLayer.h
+        src/exceptions/InvalidNetworkSize.cpp
+        src/exceptions/InvalidNetworkSize.h
         src/random/RandomGenerator.cpp
         src/random/RandomGenerator.h
         src/thread/LayerThreadPool.cpp

@@ -9,10 +9,15 @@
 #include "activations/ActivationFactory.h"
 #include "exceptions/InvalidInputSize.h"
 #include "exceptions/InvalidLayer.h"
+#include "exceptions/InvalidNetworkSize.h"
 
 namespace PyreNet {
     class NeuralNet {
     public:
+        /* Empty network with no layers currently added - a minimum of 1 input layer,
+         1 hidden layer, and 1 output layer are required to use the network. */
+        NeuralNet(int);
+
         // # of input size, and layer topology (vector of layer sizes, includes output & middle)
         NeuralNet(int, const std::vector<LayerDefinition>&);
 
@@ -21,6 +26,9 @@ namespace PyreNet {
 
         // Predict output
         std::vector<double> predict(const std::vector<double>&);
+
+        //Add new layer to network
+        void add(const LayerDefinition &);
 
         // Mutate weightings in the neural net by an interval amount.
         // Applies to all layers by default.
