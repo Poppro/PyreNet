@@ -51,7 +51,7 @@ namespace PyreNet {
         std::vector<Perceptron> tmp;
         tmp.reserve(newLayer.size);
         Activation* activation = activationFactory->getActivation(newLayer.activation);
-        this->layers.emplace_back(layer.size, prevSize, activation);
+        this->layers.emplace_back(newLayer.size, prevSize, activation);
     }
 
     // Mutators
