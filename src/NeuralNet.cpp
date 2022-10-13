@@ -48,8 +48,6 @@ namespace PyreNet {
         if (this->layers.empty()) prevSize = this->inputSize;
         else prevSize = this->layers.back().size();
 
-        std::vector<Perceptron> tmp;
-        tmp.reserve(newLayer.size);
         Activation* activation = activationFactory->getActivation(newLayer.activation);
         this->layers.emplace_back(newLayer.size, prevSize, activation);
     }
