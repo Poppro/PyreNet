@@ -29,7 +29,7 @@ namespace PyreNet {
     // Predictor
 
     std::vector<double> NeuralNet::predict(const std::vector<double> &input) {
-        if (this->layers.size() < 3 || this->inputSize == 0) throw InvalidNetworkSize();
+        if (this->layers.size() == 0 || this->inputSize == 0) throw InvalidNetworkSize();
         if (input.size() != this->inputSize) throw InvalidInputSize();
         std::vector<double> layerData(input);
         for (Layer &l : this->layers) {
@@ -45,8 +45,8 @@ namespace PyreNet {
 
         this->layers.reserve(this->layers.size() + 1);
         int prevSize;
-        if(this->layers.empty()){prevSize = this->inputSize;}
-        else{prevSize = this->layers.back().size();}
+        if (this->layers.empty()) prevSize = this->inputSize;
+        else prevSize = this->layers.back().size();
 
         std::vector<Perceptron> tmp;
         tmp.reserve(newLayer.size);
