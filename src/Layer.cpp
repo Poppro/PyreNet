@@ -12,7 +12,7 @@
 namespace PyreNet {
 // Constructor
 
-    Layer::Layer(int size, int prevSize, Activation *activation) {
+    Layer::Layer(const int size, const int prevSize, Activation *activation) {
         this->nodes.reserve(size);
         for (int i = 0; i < size; i++) {
             this->nodes.emplace_back(prevSize);
@@ -40,13 +40,13 @@ namespace PyreNet {
 
 // Mutators
 
-    void Layer::mutate_uniform(double lower, double upper) {
+    void Layer::mutate_uniform(const double lower, const double upper) {
         for (Perceptron &p : this->nodes) {
             p.mutate_uniform(lower, upper);
         }
     }
 
-    void Layer::mutate_gaussian(double mean, double std) {
+    void Layer::mutate_gaussian(const double mean, const double std) {
         for (Perceptron &p : this->nodes) {
             p.mutate_gaussian(mean, std);
         }
@@ -54,7 +54,7 @@ namespace PyreNet {
 
 // Getters
 
-    int Layer::size() {
+    const int Layer::size() {
         return this->nodes.size();
     }
 

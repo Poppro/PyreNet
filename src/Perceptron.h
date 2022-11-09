@@ -19,9 +19,9 @@ namespace PyreNet {
 
         double getValue() const;
 
-        void mutate_uniform(double, double);
+        void mutate_uniform(const double, const double);
 
-        void mutate_gaussian(double, double);
+        void mutate_gaussian(const double, const double);
 
         friend std::ostream& operator<<(std::ostream& os, const Perceptron &p);
 

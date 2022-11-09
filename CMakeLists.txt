@@ -3,9 +3,10 @@ project(PyreNet)
 
 SET(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -pthread)
+enable_testing()
 
 ADD_EXECUTABLE(PyreNetTest
-        tst/Test.cpp
+        test/Test.cpp
         src/PyreNet.h
         src/NeuralNet.cpp
         src/NeuralNet.h
@@ -33,6 +34,8 @@ ADD_EXECUTABLE(PyreNetTest
         src/exceptions/InvalidInputSize.h
         src/exceptions/InvalidLayer.cpp
         src/exceptions/InvalidLayer.h
+        src/exceptions/InvalidNetworkSize.cpp
+        src/exceptions/InvalidNetworkSize.h
         src/random/RandomGenerator.cpp
         src/random/RandomGenerator.h
         src/thread/LayerThreadPool.cpp
@@ -67,7 +70,14 @@ ADD_LIBRARY(PyreNet STATIC
         src/exceptions/InvalidInputSize.h
         src/exceptions/InvalidLayer.cpp
         src/exceptions/InvalidLayer.h
+        src/exceptions/InvalidNetworkSize.cpp
+        src/exceptions/InvalidNetworkSize.h
         src/random/RandomGenerator.cpp
         src/random/RandomGenerator.h
         src/thread/LayerThreadPool.cpp
         src/thread/LayerThreadPool.h)
+
+
+ADD_TEST(System_Test
+        ./PyreNetTest
+        )
